@@ -1,0 +1,9 @@
+Put all your c++ code in this directory.
+
+Try and keep with the c naming convetion of the files.
+
+i.e don't name c++ version of attack.c MYcoolFile.cpp
+
+and keep the functionality of the new file very closely related to its c counterpart.
+
+if you change a functions name, please document that, and give the original function name in a nearby commet
