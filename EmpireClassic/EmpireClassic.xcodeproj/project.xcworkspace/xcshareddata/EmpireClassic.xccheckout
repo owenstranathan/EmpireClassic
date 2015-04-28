@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>88FF12FD-2EB3-45A6-8890-A6A7ED57F830</string>
+	<key>IDESourceControlProjectName</key>
+	<string>EmpireClassic</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B731682AC4F4E6E0020D6FDF53C8FA62A83C17DB</key>
+		<string>https://github.com/owenstranathan/EmpireClassic.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>EmpireClassic/EmpireClassic.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B731682AC4F4E6E0020D6FDF53C8FA62A83C17DB</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/owenstranathan/EmpireClassic.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B731682AC4F4E6E0020D6FDF53C8FA62A83C17DB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B731682AC4F4E6E0020D6FDF53C8FA62A83C17DB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>EmpireClassic</string>
+		</dict>
+	</array>
+</dict>
+</plist>

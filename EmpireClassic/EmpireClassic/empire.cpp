@@ -6,4 +6,22 @@
 //  Copyright (c) 2015 Owen Stranathan. All rights reserved.
 //
 
-#include "map.h"
+#include "empire.hpp"
+#include "ResourcePath.hpp"
+
+
+
+
+
+
+///////////////////////
+//PIECE////////////////
+///////////////////////
+void piece::draw(sf::RenderWindow & window)
+{
+    window.draw(sprite);
+}
+
+piece::piece():owner(NONE)
+{
+}

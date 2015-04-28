@@ -16,15 +16,97 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <fstream>
+#include <iostream>
+#include <string>
+
+#include "empire.hpp"
+#include "display.hpp"
+
 
 // Here is a small helper for you ! Have a look.
 #include "ResourcePath.hpp"
 
+//The actual map
+piece* real_map[MAP_W][MAP_H];
+//The players view map
+piece * player_map[MAP_W][MAP_H];
+
+//declaring extenal global textures
+sf::Texture fog;
+sf::Texture city;
+sf::Texture water;
+sf::Texture land;
+
+void makeMap()
+{
+    for (int i = 0; i < MAP_W; i++)
+    {
+        for (int j = 0; j < MAP_H; j++)
+        {
+            real_map[i][j] = new piece;
+        }
+    }
+}
+
+void readMap(std::string file)
+{
+    std::ifstream infile (file.c_str());
+    std::string line;
+    int row = 0;
+    if(infile.is_open())
+    {
+        
+        while(std::getline(infile,line))
+        {
+            int column = 0;
+            for(int j = 0; j < line.length(); j ++)
+            {
+                std::cout << line[j];
+                real_map[row][column]->isLand = line[j] - '0';
+                column++;
+            }
+            std::cout << std::endl;
+            row++;
+        }
+    }
+}
+
+
+void loadMapTextures()
+{
+    for(int i = 0; i < MAP_W; i++)
+    {
+        for(int j = 0; j < MAP_H; j++)
+        {
+            real_map[i][j]->sprite.setPosition(i*32, j*32);
+            if(real_map[i][j]->isLand)
+            {
+                real_map[i][j]->sprite.setTexture(land);
+                //real_map[i][j]->sprite.setColor(sf::Color((i+1)*9,(j+1)*9,0));
+            }
+            else
+            {
+                real_map[i][j]->sprite.setTexture(water);
+                //real_map[i][j]->sprite.setColor(sf::Color((i+1)*9,(j+1)*9,0));
+            }
+        }
+    }
+}
+
 int main(int, char const**)
 {
+    //load the textures from files and exit
+    if(!loadTextures()) { return EXIT_FAILURE; }
+    makeMap();
+    readMap(resourcePath() + "map.txt");
+    loadMapTextures();
+    
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "EmpireClassic");
 
+    
+    
     // Set the Icon
     sf::Image icon;
     if (!icon.loadFromFile(resourcePath() + "icon.png")) {
@@ -32,29 +114,8 @@ int main(int, char const**)
     }
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-    // Load a sprite to display
-    sf::Texture texture;
-    if (!texture.loadFromFile(resourcePath() + "cute_image.jpg")) {
-        return EXIT_FAILURE;
-    }
-    sf::Sprite sprite(texture);
+    
 
-    // Create a graphical text to display
-    sf::Font font;
-    if (!font.loadFromFile(resourcePath() + "sansation.ttf")) {
-        return EXIT_FAILURE;
-    }
-    sf::Text text("Hello SFML", font, 50);
-    text.setColor(sf::Color::Black);
-
-    // Load a music to play
-    sf::Music music;
-    if (!music.openFromFile(resourcePath() + "nice_music.ogg")) {
-        return EXIT_FAILURE;
-    }
-
-    // Play the music
-    music.play();
 
     // Start the game loop
     while (window.isOpen())
@@ -74,14 +135,21 @@ int main(int, char const**)
             }
         }
 
-        // Clear screen
-        window.clear();
 
-        // Draw the sprite
-        window.draw(sprite);
+
+        for(int i = 0; i < MAP_W; i++ )
+        {
+            for(int j = 0; j < MAP_H; j ++ )
+            {
+                // Draw the sprite
+                real_map[i][j]->draw(window);
+                
+            }
+        }
+
 
         // Draw the string
-        window.draw(text);
+        //window.draw(text);
 
         // Update the window
         window.display();

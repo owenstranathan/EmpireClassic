@@ -7,24 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1A4861D1AF018C600489DE0 /* display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A4861B1AF018C600489DE0 /* display.cpp */; };
 		C1A6FED81AEEB7F500C57F06 /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = C1A6FED71AEEB7F500C57F06 /* ResourcePath.mm */; };
 		C1A6FEDB1AEEB7F500C57F06 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A6FEDA1AEEB7F500C57F06 /* main.cpp */; };
-		C1A6FEDE1AEEB7F500C57F06 /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEDD1AEEB7F500C57F06 /* cute_image.jpg */; };
-		C1A6FEE01AEEB7F500C57F06 /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEDF1AEEB7F500C57F06 /* nice_music.ogg */; };
 		C1A6FEE21AEEB7F500C57F06 /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEE11AEEB7F500C57F06 /* sansation.ttf */; };
 		C1A6FEE41AEEB7F500C57F06 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEE31AEEB7F500C57F06 /* icon.png */; };
+		C1A6FEEC1AEEB87300C57F06 /* empire.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A6FEEA1AEEB87300C57F06 /* empire.cpp */; };
+		C1A6FEEE1AEECD1300C57F06 /* fog.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEED1AEECD1300C57F06 /* fog.png */; };
+		C1A6FEF01AEEF45A00C57F06 /* city.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEEF1AEEF45A00C57F06 /* city.png */; };
+		C1A6FEF21AEF1B6B00C57F06 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEF11AEF1B6B00C57F06 /* water.png */; };
+		C1A6FEF41AEF2B0F00C57F06 /* land.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEF31AEF2B0F00C57F06 /* land.png */; };
+		C1A6FEF61AEF317A00C57F06 /* map.txt in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEF51AEF317A00C57F06 /* map.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C1A4861B1AF018C600489DE0 /* display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = display.cpp; sourceTree = "<group>"; };
+		C1A4861C1AF018C600489DE0 /* display.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = display.hpp; sourceTree = "<group>"; };
 		C1A6FED21AEEB7F400C57F06 /* EmpireClassic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmpireClassic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A6FED61AEEB7F500C57F06 /* EmpireClassic-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EmpireClassic-Info.plist"; sourceTree = "<group>"; };
 		C1A6FED71AEEB7F500C57F06 /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
 		C1A6FED91AEEB7F500C57F06 /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
 		C1A6FEDA1AEEB7F500C57F06 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		C1A6FEDD1AEEB7F500C57F06 /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
-		C1A6FEDF1AEEB7F500C57F06 /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
 		C1A6FEE11AEEB7F500C57F06 /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
 		C1A6FEE31AEEB7F500C57F06 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		C1A6FEEA1AEEB87300C57F06 /* empire.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = empire.cpp; sourceTree = "<group>"; };
+		C1A6FEEB1AEEB87300C57F06 /* empire.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = empire.hpp; sourceTree = "<group>"; };
+		C1A6FEED1AEECD1300C57F06 /* fog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fog.png; sourceTree = "<group>"; };
+		C1A6FEEF1AEEF45A00C57F06 /* city.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = city.png; sourceTree = "<group>"; };
+		C1A6FEF11AEF1B6B00C57F06 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
+		C1A6FEF31AEF2B0F00C57F06 /* land.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = land.png; sourceTree = "<group>"; };
+		C1A6FEF51AEF317A00C57F06 /* map.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +69,11 @@
 		C1A6FED41AEEB7F500C57F06 /* EmpireClassic */ = {
 			isa = PBXGroup;
 			children = (
+				C1A4861C1AF018C600489DE0 /* display.hpp */,
+				C1A4861B1AF018C600489DE0 /* display.cpp */,
 				C1A6FED71AEEB7F500C57F06 /* ResourcePath.mm */,
+				C1A6FEEB1AEEB87300C57F06 /* empire.hpp */,
+				C1A6FEEA1AEEB87300C57F06 /* empire.cpp */,
 				C1A6FED91AEEB7F500C57F06 /* ResourcePath.hpp */,
 				C1A6FEDA1AEEB7F500C57F06 /* main.cpp */,
 				C1A6FEDC1AEEB7F500C57F06 /* Resources */,
@@ -77,8 +93,11 @@
 		C1A6FEDC1AEEB7F500C57F06 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C1A6FEDD1AEEB7F500C57F06 /* cute_image.jpg */,
-				C1A6FEDF1AEEB7F500C57F06 /* nice_music.ogg */,
+				C1A6FEF51AEF317A00C57F06 /* map.txt */,
+				C1A6FEEF1AEEF45A00C57F06 /* city.png */,
+				C1A6FEF31AEF2B0F00C57F06 /* land.png */,
+				C1A6FEF11AEF1B6B00C57F06 /* water.png */,
+				C1A6FEED1AEECD1300C57F06 /* fog.png */,
 				C1A6FEE11AEEB7F500C57F06 /* sansation.ttf */,
 				C1A6FEE31AEEB7F500C57F06 /* icon.png */,
 			);
@@ -144,8 +163,11 @@
 			files = (
 				C1A6FEE41AEEB7F500C57F06 /* icon.png in Resources */,
 				C1A6FEE21AEEB7F500C57F06 /* sansation.ttf in Resources */,
-				C1A6FEE01AEEB7F500C57F06 /* nice_music.ogg in Resources */,
-				C1A6FEDE1AEEB7F500C57F06 /* cute_image.jpg in Resources */,
+				C1A6FEF41AEF2B0F00C57F06 /* land.png in Resources */,
+				C1A6FEF61AEF317A00C57F06 /* map.txt in Resources */,
+				C1A6FEF01AEEF45A00C57F06 /* city.png in Resources */,
+				C1A6FEEE1AEECD1300C57F06 /* fog.png in Resources */,
+				C1A6FEF21AEF1B6B00C57F06 /* water.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +194,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A6FEEC1AEEB87300C57F06 /* empire.cpp in Sources */,
 				C1A6FEDB1AEEB7F500C57F06 /* main.cpp in Sources */,
+				C1A4861D1AF018C600489DE0 /* display.cpp in Sources */,
 				C1A6FED81AEEB7F500C57F06 /* ResourcePath.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +335,7 @@
 				C1A6FEE91AEEB7F500C57F06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
