@@ -30,7 +30,14 @@ extern sf::Texture land;
 //true on load success
 bool loadTextures();
 
+//set's map sprite textures
 void loadMapTextures();
+
+//Draw the real map
+void drawRealMap(sf::RenderWindow & window);
+
+//Draw the player map
+void drawPlayerMap(sf::RenderWindow & window);
 
 
 #endif /* defined(__EmpireClassic__display__) */

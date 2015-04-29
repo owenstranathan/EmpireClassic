@@ -45,3 +45,21 @@ void loadMapTextures()
         }
     }
 }
+
+
+void drawRealMap(sf::RenderWindow & window)
+{
+    for(int i = 0; i < MAP_W; i++ )
+    {
+        for(int j = 0; j < MAP_H; j ++ )
+        {
+            // Draw the sprite
+            real_map[i][j].draw(window);
+            if(real_map[)
+            {
+                
+            }
+        }
+    }
+    
+}
