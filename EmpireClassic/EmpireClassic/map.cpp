@@ -30,6 +30,10 @@ void readMap(std::string file)
                             //push city onto tile vector
                             real_map[column][row].pieceList.push_back(new City); 
                             break;
+                        case 3:
+                            real_map[column][row].terrain = WATER;
+                            real_map[column][row].pieceList.push_back(new Transport);
+                            break;
                         case 4:
                             //push army onto tile vector
                             //real_map[column][row].pieceList.push_back
@@ -40,12 +44,7 @@ void readMap(std::string file)
                 {
                     //set the terrain type
                     real_map[column][row].terrain = WATER;
-                    switch(type)
-                    {
-                        case 3:
-                            real_map[column][row].pieceList.push_back(new Transport);
-                            break;
-                    }
+
                 }
                 //set the position of the tile
                 real_map[column][row].x = row;
@@ -79,7 +78,7 @@ void updateMap(int r, int c, int a)
 		{
 		    for(int k = 1; k <= j; k++) 
 		    {
-			player_map[c-i][r+k] = real_map[c-i][r+k];
+                player_map[c-i][r+k] = real_map[c-i][r+k];
 		    }
 		}
 		//check down
@@ -88,7 +87,7 @@ void updateMap(int r, int c, int a)
 		    for(int k = 1; k <= j; k++) 
 		    {
 			player_map[c-i][r-k] = real_map[c-i][r-k];
-		    }
+            }
 		}
 	    }
 	    //check right

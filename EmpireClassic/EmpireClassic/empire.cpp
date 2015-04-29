@@ -33,6 +33,7 @@ struct TypeVisitor : public Visitor
 {
     std::string type;
     void visit(Transport * t){ type = "Transport"; }
+    void visit(City * c){ type = "City"; }
     //add stuff for other types
     
 };

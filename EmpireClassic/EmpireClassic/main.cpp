@@ -22,15 +22,16 @@
 
 #include "empire.hpp"
 #include "display.hpp"
+#include "map.hpp"
 
 
 // Here is a small helper for you ! Have a look.
 #include "ResourcePath.hpp"
 
 //The actual map
-piece* real_map[MAP_W][MAP_H];
+Tile real_map[MAP_W][MAP_H];
 //The players view map
-piece * player_map[MAP_W][MAP_H];
+Tile player_map[MAP_W][MAP_H];
 
 //declaring extenal global textures
 sf::Texture fog;
@@ -38,74 +39,18 @@ sf::Texture city;
 sf::Texture water;
 sf::Texture land;
 
-void makeMap()
-{
-    for (int i = 0; i < MAP_W; i++)
-    {
-        for (int j = 0; j < MAP_H; j++)
-        {
-            real_map[i][j] = new piece;
-        }
-    }
-}
 
-void readMap(std::string file)
-{
-    std::ifstream infile (file.c_str());
-    std::string line;
-    int row = 0;
-    if(infile.is_open())
-    {
-        
-        while(std::getline(infile,line))
-        {
-            int column = 0;
-            for(int j = 0; j < line.length(); j ++)
-            {
-                std::cout << line[j];
-                real_map[row][column]->isLand = line[j] - '0';
-                column++;
-            }
-            std::cout << std::endl;
-            row++;
-        }
-    }
-}
-
-
-void loadMapTextures()
-{
-    for(int i = 0; i < MAP_W; i++)
-    {
-        for(int j = 0; j < MAP_H; j++)
-        {
-            real_map[i][j]->sprite.setPosition(i*32, j*32);
-            if(real_map[i][j]->isLand)
-            {
-                real_map[i][j]->sprite.setTexture(land);
-                //real_map[i][j]->sprite.setColor(sf::Color((i+1)*9,(j+1)*9,0));
-            }
-            else
-            {
-                real_map[i][j]->sprite.setTexture(water);
-                //real_map[i][j]->sprite.setColor(sf::Color((i+1)*9,(j+1)*9,0));
-            }
-        }
-    }
-}
 
 int main(int, char const**)
 {
     //load the textures from files and exit
     if(!loadTextures()) { return EXIT_FAILURE; }
-    makeMap();
     readMap(resourcePath() + "map.txt");
     loadMapTextures();
     
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "EmpireClassic");
 
-    
     
     // Set the Icon
     sf::Image icon;
@@ -133,19 +78,12 @@ int main(int, char const**)
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                 window.close();
             }
+            //WASD for piece movement
+            //UP DOWN RIGHT LEFT for cursur
+            //enter is to select piece when in cursur
         }
+        drawRealMap(window);
 
-
-
-        for(int i = 0; i < MAP_W; i++ )
-        {
-            for(int j = 0; j < MAP_H; j ++ )
-            {
-                // Draw the sprite
-                real_map[i][j]->draw(window);
-                
-            }
-        }
 
 
         // Draw the string

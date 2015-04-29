@@ -26,6 +26,7 @@ struct Visitor;
 struct Piece;
 struct Transport;
 struct City;
+struct Army;
 
 
 /////////////
@@ -35,6 +36,7 @@ struct Visitor
 {
     virtual void visit(Transport *) {}
     virtual void visit(City *) {}
+    virtual void visit(Army *) {}
 };
 
 //for getting the type of a piece
@@ -109,7 +111,7 @@ struct Transport : Piece
     std::vector<Piece *> contents;
     int vision;
     int hp;
-    bool hasMoved;
+    int moves;
     
     //for type specific actions
     void accept(Visitor & v) { v.visit(this); }
@@ -138,6 +140,19 @@ struct City : Piece
     
     //give ownership of a city to another player
     void submitTo(Owner & newOwner);
+    
+};
+
+struct Army : Piece
+{
+    int vision;
+    int strength;
+    int hp;
+    int moves;
+    
+    void accept(Visitor & v ){ v.visit(this);}
+        
+    //movement functionally
     
 };
 

@@ -55,7 +55,8 @@ void drawRealMap(sf::RenderWindow & window)
         {
             // Draw the sprite
             real_map[i][j].draw(window);
-            if(real_map[)
+            //if the tile's piece list is not emty
+            if(!real_map[i][j].pieceList.empty())
             {
                 
             }
