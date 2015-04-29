@@ -1,10 +1,45 @@
+
 #include "map.hpp"
+#include "empire.hpp"
 #include <iostream>
-using namespace std;
+#include <fstream>
 
 
 
-
+void readMap(std::string file)
+{
+    std::ifstream infile (file.c_str());
+    std::string line;
+    int row = 0;
+    if(infile.is_open())
+    {
+        
+        while(std::getline(infile,line))
+        {
+            int column = 0;
+            for(int j = 0; j < line.length(); j ++)
+            {
+                std::cout << line[j];
+                if(line[j]-'0')
+                {
+                    //set the terrain type
+                    real_map[column][row].terrain = LAND;
+                                    }
+                else
+                {
+                    //set the terrain type
+                    real_map[row][column].terrain = WATER;
+                }
+                //set the position of the tile
+                real_map[column][row].x = row;
+                real_map[column][row].y = column;
+                column++;
+            }
+            std::cout << std::endl;
+            row++;
+        }
+    }
+}
 
 
 void updateMap(int r, int c, int a)
@@ -66,6 +101,6 @@ void updateMap(int r, int c, int a)
 	    {
 		player_map[c][r-j] = real_map[c][r-j];
 	    }
-	}
+	
     }
 }

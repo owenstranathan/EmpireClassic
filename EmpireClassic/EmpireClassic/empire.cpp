@@ -10,18 +10,37 @@
 #include "ResourcePath.hpp"
 
 
-
-
-
-
-///////////////////////
-//PIECE////////////////
-///////////////////////
-void piece::draw(sf::RenderWindow & window)
+///////////////
+//TILE/////////
+///////////////
+void Tile::draw(sf::RenderWindow & window)
 {
     window.draw(sprite);
 }
 
-piece::piece():owner(NONE)
+///////////////
+//PIECE////////
+///////////////
+void Piece::draw(sf::RenderWindow & window)
 {
+    window.draw(sprite);
 }
+
+////////////////
+//VISITOR///////
+////////////////
+struct TypeVisitor : public Visitor
+{
+    std::string type;
+    void visit(Transport * t){ type = "Transport"; }
+    //add stuff for other types
+    
+};
+
+std::string getType(Piece * piece)
+{
+    TypeVisitor v;
+    piece->accept(v);
+    return v.type;
+}
+

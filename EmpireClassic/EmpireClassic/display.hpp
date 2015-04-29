@@ -30,7 +30,7 @@ extern sf::Texture land;
 //true on load success
 bool loadTextures();
 
-
+void loadMapTextures();
 
 
 #endif /* defined(__EmpireClassic__display__) */
