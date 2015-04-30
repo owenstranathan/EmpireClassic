@@ -17,6 +17,8 @@
 
 #include "ResourcePath.hpp"
 
+
+
 //Number of turns that have elapsed
 extern int turn;
 
@@ -27,6 +29,9 @@ struct Piece;
 struct Transport;
 struct City;
 struct Army;
+
+//vactir to hold all the pieces the player owns
+extern std::vector<Piece *> player_pieces;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -123,7 +128,7 @@ struct Transport : Piece
 {
     //linked list for contents
     std::vector<Piece *> contents;
-    int vision;
+    const int vision = 1;
     int hp;
     int moves;
     

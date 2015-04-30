@@ -40,6 +40,7 @@ void readMap(std::string file)
                         case 3:
                             real_map[column][row].terrain = WATER;
                             real_map[column][row].pieceList.push_back(new Transport(column, row));
+                            updateVision(column, row, 1);
                             break;
                         case 4:
                             //push army onto tile vector
@@ -82,19 +83,33 @@ bool isOnMap(int x, int y)
 }
 
 
+
+
+
 void updateVision(int x, int y, int v )
 {
     //for the total length of vision
-    for( ; v > 0; v--)
+    for( ; v >= 0; v--)
     {
-        if(isOnMap(x, y+v)){ player_map[x][y+x] = true; } // v blocks NORTH
+        if(isOnMap(x, y-v)){ player_map[x][y-v] = true; } // v blocks NORTH
         if(isOnMap(x+v,y-v)){ player_map[x+v][y-v] = true; } // v blocks NORTHEAST
         if(isOnMap(x+v,y)){ player_map[x+v][y] = true; } // v blocks BLOCKS EAST
         if(isOnMap(x+v,y+v)){ player_map[x+v][y+v] = true; } // v blocks SOUTHEAST
         if(isOnMap(x,y+v)){ player_map[x][y+v] = true; } // v blocks SOUTH
-        if(isOnMap(x-v,y+v)){ player_map[x+v][y+v] = true; } // v blocks SOUTHWEST
+        if(isOnMap(x-v,y+v)){ player_map[x-v][y+v] = true; } // v blocks SOUTHWEST
         if(isOnMap(x-v,y)){ player_map[x-v][y] = true; } // v blocks WEST
         if(isOnMap(x-v,y-v)){ player_map[x-v][y-v] = true; }// v blocks NORTHWEST
+    }
+}
+
+void clearVision()
+{
+    for(int i = 0; i < MAP_W; i++)
+    {
+        for(int j = 0 ; j<MAP_H; j++)
+        {
+            player_map[i][j] = false;
+        }
     }
 }
 

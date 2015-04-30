@@ -24,6 +24,9 @@ void updateVision(int , int, int v = 1);
 //function to check if a location is part of the map
 bool isOnMap(int, int);
 
+//for clearing the vision of the map
+void clearVision();
+
 #endif /* defined(MAP_HPP) */
 
 

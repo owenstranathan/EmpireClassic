@@ -19,12 +19,15 @@ const int SCREEN_WIDTH = 960;
 const int SCREEN_HEIGHT = 640;
 
 //external textures
-extern sf::Texture fog;
+extern sf::Texture fogTexture;
 extern sf::Texture city;
 extern sf::Texture water;
 extern sf::Texture land;
 extern sf::Texture transport;
 extern sf::Texture army;
+
+//constant fog sprite to draw fog of war
+extern sf::Sprite fog;
 
 //to load the textures from files
 //file paths are hardcoded
@@ -36,10 +39,9 @@ bool loadTextures();
 void loadMapTextures();
 
 //Draw the real map
-void drawRealMap(sf::RenderWindow & window);
+void drawMap(sf::RenderWindow & window);
 
-//Draw the player map
-void drawPlayerMap(sf::RenderWindow & window);
+
 
 
 #endif /* defined(__EmpireClassic__display__) */

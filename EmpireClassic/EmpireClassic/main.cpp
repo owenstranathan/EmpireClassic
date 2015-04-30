@@ -34,21 +34,25 @@ Tile real_map[MAP_W][MAP_H];
 bool player_map[MAP_W][MAP_H];
 
 //declaring extenal global textures
-sf::Texture fog;
+sf::Texture fogTexture;
 sf::Texture city;
 sf::Texture water;
 sf::Texture land;
 sf::Texture transport;
 sf::Texture army;
 
+//Fog of War sprite
+sf::Sprite fog;
 
 
 int main(int, char const**)
 {
     //load the textures from files and exit
     if(!loadTextures()) { return EXIT_FAILURE; }
+    clearVision();
     readMap(resourcePath() + "map.txt");
     loadMapTextures();
+    fog.setTexture(fogTexture);
     
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "EmpireClassic");
@@ -84,7 +88,7 @@ int main(int, char const**)
             //UP DOWN RIGHT LEFT for cursur
             //enter is to select piece when in cursur
         }
-        drawRealMap(window);
+        drawMap(window);
 
 
 

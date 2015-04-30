@@ -9,18 +9,19 @@
 #include "display.hpp"
 #include "map.hpp"
 #include "ResourcePath.hpp"
+#include <iomanip>
 
 
 
 bool loadTextures()
 {
-    fog.setSmooth(true);
+    fogTexture.setSmooth(true);
     city.setSmooth(true);
     water.setSmooth(true);
     land.setSmooth(true);
     transport.setSmooth(true);
     army.setSmooth(true);
-    return (fog.loadFromFile(resourcePath() +"fog.png")
+    return (fogTexture.loadFromFile(resourcePath() +"fog.png")
             && city.loadFromFile(resourcePath() + "city.png")
             && water.loadFromFile(resourcePath() + "water.png")
             && land.loadFromFile(resourcePath() + "land.png")
@@ -90,8 +91,10 @@ void loadMapTextures()
 }
 
 
-void drawRealMap(sf::RenderWindow & window)
+//DRAWS THE REAL MAP AND THE FOG OF WAR WHERE APPROPRIATE
+void drawMap(sf::RenderWindow & window)
 {
+    std::cout << std::endl;
     for(int i = 0; i < MAP_W; i++ )
     {
         for(int j = 0; j < MAP_H; j ++ )
@@ -104,6 +107,15 @@ void drawRealMap(sf::RenderWindow & window)
                 //draw the last piece in the list
                 real_map[i][j].pieceList.back()->draw(window);
             }
+            //Draw the players vision
+            if(!player_map[i][j])
+            {
+                //cover anything the player can't see with fog
+                fog.setPosition(i*32,j*32);
+                window.draw(fog);
+            }
         }
     }
 }
+
+
