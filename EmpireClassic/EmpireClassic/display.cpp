@@ -94,7 +94,6 @@ void loadMapTextures()
 //DRAWS THE REAL MAP AND THE FOG OF WAR WHERE APPROPRIATE
 void drawMap(sf::RenderWindow & window)
 {
-    std::cout << std::endl;
     for(int i = 0; i < MAP_W; i++ )
     {
         for(int j = 0; j < MAP_H; j ++ )
