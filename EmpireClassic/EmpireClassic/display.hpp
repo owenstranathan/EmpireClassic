@@ -23,6 +23,8 @@ extern sf::Texture fog;
 extern sf::Texture city;
 extern sf::Texture water;
 extern sf::Texture land;
+extern sf::Texture transport;
+extern sf::Texture army;
 
 //to load the textures from files
 //file paths are hardcoded

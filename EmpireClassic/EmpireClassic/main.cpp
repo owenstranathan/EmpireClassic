@@ -31,13 +31,15 @@
 //The actual map
 Tile real_map[MAP_W][MAP_H];
 //The players view map
-Tile player_map[MAP_W][MAP_H];
+bool player_map[MAP_W][MAP_H];
 
 //declaring extenal global textures
 sf::Texture fog;
 sf::Texture city;
 sf::Texture water;
 sf::Texture land;
+sf::Texture transport;
+sf::Texture army;
 
 
 

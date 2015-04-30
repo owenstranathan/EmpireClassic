@@ -4,16 +4,21 @@
 #include <iostream>
 #include <fstream>
 
+int cityCount;
+
 
 //Read the saved map and bring it into memory from file
 void readMap(std::string file)
 {
+    //Set the city count to zero at the start of the game
+    cityCount = 0;
+    
+    //Read the game dat in from a file
     std::ifstream infile (file.c_str());
     std::string line;
     int row = 0;
     if(infile.is_open())
     {
-        
         while(std::getline(infile,line))
         {
             for(int column = 0; column < line.length(); column++)
@@ -28,11 +33,13 @@ void readMap(std::string file)
                     {
                         case 2:
                             //push city onto tile vector
-                            real_map[column][row].pieceList.push_back(new City); 
+                            real_map[column][row].pieceList.push_back(new City(column, row, cityCount));
+                            //increase the cityCount
+                            ++cityCount;
                             break;
                         case 3:
                             real_map[column][row].terrain = WATER;
-                            real_map[column][row].pieceList.push_back(new Transport);
+                            real_map[column][row].pieceList.push_back(new Transport(column, row));
                             break;
                         case 4:
                             //push army onto tile vector
@@ -47,8 +54,8 @@ void readMap(std::string file)
 
                 }
                 //set the position of the tile
-                real_map[column][row].x = row;
-                real_map[column][row].y = column;
+                real_map[column][row].x = column;
+                real_map[column][row].y = row;
             }
             std::cout << std::endl;
             row++;
@@ -61,6 +68,39 @@ void readMap(std::string file)
     
 }
 
+bool isOnMap(int x, int y)
+{
+    if(x >= MAP_W || x < 0)
+    {
+        return false;
+    }
+    if(y >= MAP_H || y < 0)
+    {
+        return false;
+    }
+    return true;
+}
+
+
+void updateVision(int x, int y, int v )
+{
+    //for the total length of vision
+    for( ; v > 0; v--)
+    {
+        if(isOnMap(x, y+v)){ player_map[x][y+x] = true; } // v blocks NORTH
+        if(isOnMap(x+v,y-v)){ player_map[x+v][y-v] = true; } // v blocks NORTHEAST
+        if(isOnMap(x+v,y)){ player_map[x+v][y] = true; } // v blocks BLOCKS EAST
+        if(isOnMap(x+v,y+v)){ player_map[x+v][y+v] = true; } // v blocks SOUTHEAST
+        if(isOnMap(x,y+v)){ player_map[x][y+v] = true; } // v blocks SOUTH
+        if(isOnMap(x-v,y+v)){ player_map[x+v][y+v] = true; } // v blocks SOUTHWEST
+        if(isOnMap(x-v,y)){ player_map[x-v][y] = true; } // v blocks WEST
+        if(isOnMap(x-v,y-v)){ player_map[x-v][y-v] = true; }// v blocks NORTHWEST
+    }
+}
+
+//OLD UPDTE MAP FUNCTION
+//NO LONGER VALID
+/*
 
 void updateMap(int r, int c, int a)
 {
@@ -123,4 +163,4 @@ void updateMap(int r, int c, int a)
 	    }
 	
     }
-}
+}*/

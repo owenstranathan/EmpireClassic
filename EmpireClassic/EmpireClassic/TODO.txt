@@ -1,0 +1,31 @@
+Things to consider:
+
+    We need two modes:
+        Curser
+        Movement/Action
+
+
+    Give pieces IDs in constructor /*
+
+    function to check validity of bounds on move/*
+
+    give constructors to pieces that set position of itself and position of sprite/*
+
+    implement fog of war
+
+    implement movement
+        actual moving of pieces aroound board matrux
+        event handling
+
+    implement cursor interaction
+        event handling
+        changing modes
+
+    implement textual interface
+
+    once all that is done, implement views
+    (which requires understanding of views, which might not be possible at this time)
+
+    menus??
+
+/* means done
