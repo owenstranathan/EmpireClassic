@@ -11,7 +11,7 @@ Things to consider:
 
     give constructors to pieces that set position of itself and position of sprite/*
 
-    implement fog of war
+    implement fog of war /*
 
     implement movement
         actual moving of pieces aroound board matrux

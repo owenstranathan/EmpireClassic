@@ -111,8 +111,8 @@ void drawMap(sf::RenderWindow & window)
             if(!player_map[i][j])
             {
                 //cover anything the player can't see with fog
-                fog.setPosition(i*32,j*32);
-                window.draw(fog);
+                //fog.setPosition(i*32,j*32);
+                //window.draw(fog);
             }
         }
     }
