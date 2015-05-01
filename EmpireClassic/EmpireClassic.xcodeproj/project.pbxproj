@@ -22,6 +22,7 @@
 		C1A6FEF41AEF2B0F00C57F06 /* land.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEF31AEF2B0F00C57F06 /* land.png */; };
 		C1A6FEF61AEF317A00C57F06 /* map.txt in Resources */ = {isa = PBXBuildFile; fileRef = C1A6FEF51AEF317A00C57F06 /* map.txt */; };
 		C1BDB0BD1AF29F3D00CC27FA /* interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BDB0BB1AF29F3D00CC27FA /* interface.cpp */; };
+		C1BDB0BF1AF2BA6500CC27FA /* army.png in Resources */ = {isa = PBXBuildFile; fileRef = C1BDB0BE1AF2BA6500CC27FA /* army.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		C1A6FEF51AEF317A00C57F06 /* map.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map.txt; sourceTree = "<group>"; };
 		C1BDB0BB1AF29F3D00CC27FA /* interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interface.cpp; sourceTree = "<group>"; };
 		C1BDB0BC1AF29F3D00CC27FA /* interface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interface.hpp; sourceTree = "<group>"; };
+		C1BDB0BE1AF2BA6500CC27FA /* army.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				C1A6FEF51AEF317A00C57F06 /* map.txt */,
+				C1BDB0BE1AF2BA6500CC27FA /* army.png */,
 				C1A486231AF16FF300489DE0 /* transport.png */,
 				C1A6FEEF1AEEF45A00C57F06 /* city.png */,
 				C1A6FEF31AEF2B0F00C57F06 /* land.png */,
@@ -183,6 +186,7 @@
 				C1A6FEF61AEF317A00C57F06 /* map.txt in Resources */,
 				C1A486221AF15CB800489DE0 /* TODO.txt in Resources */,
 				C1A6FEF01AEEF45A00C57F06 /* city.png in Resources */,
+				C1BDB0BF1AF2BA6500CC27FA /* army.png in Resources */,
 				C1A486241AF16FF300489DE0 /* transport.png in Resources */,
 				C1A6FEEE1AEECD1300C57F06 /* fog.png in Resources */,
 				C1A6FEF21AEF1B6B00C57F06 /* water.png in Resources */,
