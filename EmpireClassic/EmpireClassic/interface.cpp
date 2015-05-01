@@ -7,16 +7,6 @@
 //
 
 #include "interface.hpp"
-<<<<<<< HEAD
-
-Tile * getMouseTile(sf::Mouse & mouse, sf::Window & window)
-{
-    sf::Vector2i mousePos = mouse.getPosition();
-    int x = mousePos.x;
-    int y = mousePos.y;
-    
-    
-=======
 #include "map.hpp"
 #include "empire.hpp"
 
@@ -38,5 +28,4 @@ Tile * getTileFromCursorPos(const sf::RenderWindow & window) {
 		}
 	}
 	return NULL;
->>>>>>> bdb286d93059501a6a7d41dc81a69fcb7a79b071
 }
