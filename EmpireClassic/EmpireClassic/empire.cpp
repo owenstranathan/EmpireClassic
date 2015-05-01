@@ -37,6 +37,7 @@ struct TypeVisitor : public Visitor
     Type type;
     void visit(Transport * t){ type = TRANSPORT; }
     void visit(City * c){ type = CITY; }
+    void visit(Army * a){ type = ARMY; }
     //add stuff for other types
     
 };
@@ -56,6 +57,10 @@ Type getType(Piece * piece)
 Transport::Transport(int arg_x, int arg_y) : Piece(arg_x, arg_y)
 { }
 
+void Transport::move(Direction dir)
+{
+    
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //CITY//////////////////////////////////////////////////////////////////////////////////
@@ -63,5 +68,17 @@ Transport::Transport(int arg_x, int arg_y) : Piece(arg_x, arg_y)
 City::City(int arg_x, int arg_y, int arg_id) : Piece(arg_x, arg_y), id(arg_id)
 { }
 
+void City::move(Direction dir) { }
+
+////////////////////////////////////////////////////////////////////////////////////////
+//ARMY//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+Army::Army(int arg_x, int arg_y) : Piece(arg_x, arg_y)
+{ }
+
+void Army::move(Direction dir)
+{
+    
+}
 
 

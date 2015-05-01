@@ -25,8 +25,8 @@ bool loadTextures()
             && city.loadFromFile(resourcePath() + "city.png")
             && water.loadFromFile(resourcePath() + "water.png")
             && land.loadFromFile(resourcePath() + "land.png")
-            && transport.loadFromFile(resourcePath() + "transport.png"));
-    //      && army.loadFromFile(resourcePath() + "army.png") !!not working right now for some reason!!
+            && transport.loadFromFile(resourcePath() + "transport.png")
+            && army.loadFromFile(resourcePath() + "army.png"));// !!not working right now for some reason!!
 }
 
 //load the textures of the map
@@ -56,7 +56,7 @@ void loadMapTextures()
                                 break;
                         
                             case ARMY:
-                                //NOTHING
+                                piece->sprite.setTexture(army);
                                 break;
                             default:
                                 break;
@@ -79,6 +79,9 @@ void loadMapTextures()
                             case TRANSPORT:
                                 piece->sprite.setTexture(transport);
                                 //piece->sprite.setPosition(real_map[i][j].x*32,real_map[i][j].y*32);
+                                break;
+                            case ARMY:
+                                piece->sprite.setTexture(army);
                                 break;
                             default:
                                 break;

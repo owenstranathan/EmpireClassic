@@ -17,3 +17,4 @@
 Tile * getTileFromCursorPos(const sf::RenderWindow & window);
 
 #endif /* defined(INTERFACE_HPP) */
+
