@@ -38,8 +38,6 @@
 /// with the main bundle or an empty string is there is no bundle.
 ///
 ////////////////////////////////////////////////////////////
-static std::string resourcePath() {
-	return "/home/eric/Documents/school stuff/OOP/final_project/EmpireClassic/EmpireClassic/EmpireClassic/Resources/";
-}
+std::string resourcePath();
 
 #endif

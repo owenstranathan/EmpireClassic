@@ -33,17 +33,17 @@ void readMap(std::string file)
                     {
                         case 2:
                             //push city onto tile vector
-                            real_map[column][row].pieceList.push_back(new City(column, row, cityCount));
+                            real_map[column][row].piece = new City(column, row, cityCount);
                             //increase the cityCount
                             ++cityCount;
                             break;
                         case 3:
                             real_map[column][row].terrain = WATER;
-                            real_map[column][row].pieceList.push_back(new Transport(column, row));
+                            real_map[column][row].piece = new Transport(column, row);
                             updateVision(column, row, 1);
                             break;
                         case 4:
-                            real_map[column][row].pieceList.push_back(new Army(column, row));
+                            real_map[column][row].piece = new Army(column, row);
                             //push army onto tile vector
                             updateVision(column, row, 1);
                             break;

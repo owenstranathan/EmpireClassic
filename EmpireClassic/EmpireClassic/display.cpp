@@ -43,49 +43,47 @@ void loadMapTextures()
                 //real_map[i][j]->sprite.setColor(sf::Color((i+1)*9,(j+1)*9,0));
                 
                 //If the pieceList is not empty
-                if(!real_map[i][j].pieceList.empty())
+                if(real_map[i][j].piece != NULL)
                 {
-                    for( Piece * piece : real_map[i][j].pieceList)
+                 
+                    //Set the textures based on the type of the city
+                    switch(getType(real_map[i][j].piece))
                     {
-                        //Set the textures based on the type of the city
-                        switch(getType(piece))
-                        {
-                            case CITY:
-                                piece->sprite.setTexture(city);
-                                //piece->sprite.setPosition(real_map[i][j].x*32,real_map[i][j].y*32);
-                                break;
+                        case CITY:
+                            real_map[i][j].piece->sprite.setTexture(city);
+                            //piece->sprite.setPosition(real_map[i][j].x*32,real_map[i][j].y*32);
+                            break;
                         
-                            case ARMY:
-                                piece->sprite.setTexture(army);
-                                break;
-                            default:
-                                break;
-                            //Stuff for other types
-                        }
+                        case ARMY:
+                            real_map[i][j].piece->sprite.setTexture(army);
+                            break;
+                        default:
+                            break;
+                        //Stuff for other types
                     }
+
                 }
             }
             else if(real_map[i][j].terrain == WATER)
             {
                 real_map[i][j].sprite.setTexture(water);
                 //real_map[i][j]->sprite.setColor(sf::Color((i+1)*9,(j+1)*9,0));
-                if(!real_map[i][j].pieceList.empty())
+                if(real_map[i][j].piece != NULL)
                 {
-                    for(Piece * piece : real_map[i][j].pieceList)
+
+                    //Set the textures based on the type of the city
+                    switch(getType(real_map[i][j].piece))
                     {
-                        //Set the textures based on the type of the city
-                        switch(getType(piece))
-                        {
-                            case TRANSPORT:
-                                piece->sprite.setTexture(transport);
-                                //piece->sprite.setPosition(real_map[i][j].x*32,real_map[i][j].y*32);
-                                break;
-                            case ARMY:
-                                piece->sprite.setTexture(army);
-                                break;
-                            default:
-                                break;
-                        }
+                        case TRANSPORT:
+                            real_map[i][j].piece->sprite.setTexture(transport);
+                            //piece->sprite.setPosition(real_map[i][j].x*32,real_map[i][j].y*32);
+                            break;
+                        case ARMY:
+                            real_map[i][j].piece->sprite.setTexture(army);
+                            break;
+                        default:
+                            break;
+                        
                     }
                 }
             }
@@ -104,10 +102,10 @@ void drawMap(sf::RenderWindow & window)
             // Draw the sprite
             real_map[i][j].draw(window);
             //if the tile's piece list is not emty
-            if(!real_map[i][j].pieceList.empty())
+            if(real_map[i][j].piece != NULL)
             {
                 //draw the last piece in the list
-                real_map[i][j].pieceList.back()->draw(window);
+                real_map[i][j].piece->draw(window);
             }
             //Draw the players vision
             if(!player_map[i][j])
