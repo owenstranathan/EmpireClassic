@@ -45,6 +45,5 @@
 		return "/home/eric/Documents/school stuff/OOP/final_project/EmpireClassic/EmpireClassic/EmpireClassic/Resources/";
 	}
 #endif
-
 #endif
 
