@@ -43,8 +43,9 @@ void readMap(std::string file)
                             updateVision(column, row, 1);
                             break;
                         case 4:
+                            real_map[column][row].pieceList.push_back(new Army(column, row));
                             //push army onto tile vector
-                            //real_map[column][row].pieceList.push_back
+                            updateVision(column, row, 1);
                             break;
                     }
                 }

@@ -57,6 +57,8 @@ int main(int, char const**)
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "EmpireClassic");
 
+    //The mouse object
+    sf::Mouse mouse;
     
     // Set the Icon
     sf::Image icon;

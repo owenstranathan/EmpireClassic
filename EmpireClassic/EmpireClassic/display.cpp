@@ -25,8 +25,8 @@ bool loadTextures()
             && city.loadFromFile(resourcePath() + "city.png")
             && water.loadFromFile(resourcePath() + "water.png")
             && land.loadFromFile(resourcePath() + "land.png")
-            && transport.loadFromFile(resourcePath() + "transport.png"));
-    //      && army.loadFromFile(resourcePath() + "army.png") !!not working right now for some reason!!
+            && transport.loadFromFile(resourcePath() + "transport.png")
+            && army.loadFromFile(resourcePath() + "army.png"));// !!not working right now for some reason!!
 }
 
 //load the textures of the map
@@ -56,7 +56,7 @@ void loadMapTextures()
                                 break;
                         
                             case ARMY:
-                                //NOTHING
+                                piece->sprite.setTexture(army);
                                 break;
                             default:
                                 break;
@@ -80,6 +80,9 @@ void loadMapTextures()
                                 piece->sprite.setTexture(transport);
                                 //piece->sprite.setPosition(real_map[i][j].x*32,real_map[i][j].y*32);
                                 break;
+                            case ARMY:
+                                piece->sprite.setTexture(army);
+                                break;
                             default:
                                 break;
                         }
@@ -94,7 +97,6 @@ void loadMapTextures()
 //DRAWS THE REAL MAP AND THE FOG OF WAR WHERE APPROPRIATE
 void drawMap(sf::RenderWindow & window)
 {
-    std::cout << std::endl;
     for(int i = 0; i < MAP_W; i++ )
     {
         for(int j = 0; j < MAP_H; j ++ )

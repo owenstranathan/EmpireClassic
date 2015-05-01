@@ -13,9 +13,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-struct Cursor
-{
-    
-};
+#include "empire.hpp"
+
+Tile * getMouseTile(sf::Mouse &, sf::Window &);
 
 #endif /* defined(INTERFACE_HPP) */

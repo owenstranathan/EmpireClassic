@@ -7,3 +7,12 @@
 //
 
 #include "interface.hpp"
+
+Tile * getMouseTile(sf::Mouse & mouse, sf::Window & window)
+{
+    sf::Vector2i mousePos = mouse.getPosition();
+    int x = mousePos.x;
+    int y = mousePos.y;
+    
+    
+}

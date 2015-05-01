@@ -33,6 +33,21 @@ struct Army;
 //vactir to hold all the pieces the player owns
 extern std::vector<Piece *> player_pieces;
 
+////////////////////////////////////////////////////////////////////////////////////////
+//DIRECTIONS////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+enum Direction
+{
+    NORTH,
+    NORTHEAST,
+    EAST,
+    SOUTHEAST,
+    SOUTH,
+    SOUTHWEST,
+    WEST,
+    NORTHWEST
+};
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //VISITOR///////////////////////////////////////////////////////////////////////////////
@@ -118,6 +133,7 @@ struct Piece
     //for type related actions
     virtual void accept(Visitor & v) = 0;
     
+    virtual void move() {}
 };
 
 
@@ -139,6 +155,7 @@ struct Transport : Piece
     void accept(Visitor & v) { v.visit(this); }
     
     //moving functionality
+    void move(Direction dir);
     
 };
 
@@ -173,6 +190,10 @@ struct City : Piece
     
     //give ownership of a city to another player
     void submitTo(Owner & newOwner);
+
+    //moving functionality
+    void move(Direction dir);
+
     
 };
 
@@ -187,9 +208,13 @@ struct Army : Piece
     int hp;
     int moves;
     
+    Army(int, int);
+    
     void accept(Visitor & v ){ v.visit(this);}
         
     //movement functionally
+    
+    void move(Direction dir);
     
 };
 
