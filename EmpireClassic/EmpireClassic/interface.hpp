@@ -9,13 +9,11 @@
 #ifndef INTERFACE_HPP
 #define INTERFACE_HPP
 
+#include "empire.hpp"
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-struct Cursor
-{
-    
-};
+Tile * getTileFromCursorPos(const sf::RenderWindow & window);
 
 #endif /* defined(INTERFACE_HPP) */

@@ -23,6 +23,7 @@
 #include "empire.hpp"
 #include "display.hpp"
 #include "map.hpp"
+#include "interface.hpp"
 
 
 // Here is a small helper for you ! Have a look.
@@ -84,9 +85,27 @@ int main(int, char const**)
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                 window.close();
             }
+
             //WASD for piece movement
             //UP DOWN RIGHT LEFT for cursur
             //enter is to select piece when in cursur
+
+            // Handle mouse click events
+            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left) {
+            	Tile * t = getTileFromCursorPos(window);
+            	if (t != NULL) {
+            		std::string type = "";
+            		switch(t->terrain) {
+						case Terrain::LAND:
+							type = "land";
+							break;
+						case Terrain::WATER:
+							type = "water";
+							break;
+            		}
+            		std::cout << "You clicked on a " << type << " tile." << std::endl;
+            	}
+            }
         }
         drawMap(window);
 
