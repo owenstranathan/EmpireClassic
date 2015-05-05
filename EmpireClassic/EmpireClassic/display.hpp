@@ -9,10 +9,10 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
-#include <iostream>
+
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <string>
+
 
 //SCREEN SIZE VALUES
 const int SCREEN_WIDTH = 960;

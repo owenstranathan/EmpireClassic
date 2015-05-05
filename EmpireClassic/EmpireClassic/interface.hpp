@@ -14,7 +14,15 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
+struct Selection
+{
+    Piece * piece;
+    
+};
+
 Tile * getTileFromCursorPos(const sf::RenderWindow & window);
+
+
 
 #endif /* defined(INTERFACE_HPP) */
 

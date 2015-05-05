@@ -14,7 +14,7 @@ Things to consider:
     implement fog of war /*
 
     implement movement
-        actual moving of pieces aroound board matrux
+        actual moving of pieces aroound board matrux/*
         event handling
 
     implement cursor interaction

@@ -9,12 +9,9 @@
 #ifndef EMPIRE_HPP
 #define EMPIRE_HPP
 
-#include <iostream>
+
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <string>
-#include <vector>
-
 #include "ResourcePath.hpp"
 
 
@@ -225,7 +222,20 @@ struct Army : Piece
 //determines whether a tile has a piece or not
 bool canRecieve(int, int);
 
-
+////////////////////////////////////////////////////////////////////////////////////////
+//WINDOW////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+struct Window : sf::RenderWindow
+{
+    sf::Music music;
+    sf::Mouse mouse;
+    sf::Image icon;
+    
+    Window(int, int, const char *);
+    
+    void init(char const *, char const *);
+    
+};
 
 
 #endif /* defined(EMPIRE_HPP) */

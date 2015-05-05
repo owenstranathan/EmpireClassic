@@ -57,7 +57,8 @@ int main(int, char const**)
     
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "EmpireClassic");
-
+    window.setFramerateLimit(60);
+    
     //The mouse object
     sf::Mouse mouse;
     
@@ -67,13 +68,23 @@ int main(int, char const**)
         return EXIT_FAILURE;
     }
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    
+    sf::Music music;
+    if (!music.openFromFile(resourcePath() + "concerningHobbits.ogg")) {
+        return EXIT_FAILURE;
+    }
 
     
+    music.play();
 
 
     // Start the game loop
     while (window.isOpen())
     {
+        if (music.getStatus() == sf::SoundSource::Stopped)
+        {
+            music.play();
+        }
         // Process events
         sf::Event event;
         while (window.pollEvent(event))
@@ -93,20 +104,11 @@ int main(int, char const**)
             //enter is to select piece when in cursur
 
             // Handle mouse click events
-            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left) {
-            	Tile * t = getTileFromCursorPos(window);
-            	if (t != NULL) {
-            		std::string type = "";
-            		switch(t->terrain) {
-						case Terrain::LAND:
-							type = "land";
-							break;
-						case Terrain::WATER:
-							type = "water";
-							break;
-            		}
-            		std::cout << "You clicked on a " << type << " tile." << std::endl;
-            	}
+            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
+            {
+                Tile * tile = getTileFromCursorPos(window);
+                
+                
             }
         }
         drawMap(window);

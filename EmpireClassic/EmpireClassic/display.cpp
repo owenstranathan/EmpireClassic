@@ -26,7 +26,7 @@ bool loadTextures()
             && water.loadFromFile(resourcePath() + "water.png")
             && land.loadFromFile(resourcePath() + "land.png")
             && transport.loadFromFile(resourcePath() + "transport.png")
-            && army.loadFromFile(resourcePath() + "army.png"));// !!not working right now for some reason!!
+            && army.loadFromFile(resourcePath() + "army.png"));
 }
 
 //load the textures of the map
