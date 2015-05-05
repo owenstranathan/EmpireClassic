@@ -56,34 +56,17 @@ int main(int, char const**)
     fog.setTexture(fogTexture);
     
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "EmpireClassic");
-    window.setFramerateLimit(60);
+    Window window(SCREEN_WIDTH, SCREEN_HEIGHT, "EmpireClassic");
     
-    //The mouse object
-    sf::Mouse mouse;
-    
-    // Set the Icon
-    sf::Image icon;
-    if (!icon.loadFromFile(resourcePath() + "icon.png")) {
-        return EXIT_FAILURE;
-    }
-    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-    
-    sf::Music music;
-    if (!music.openFromFile(resourcePath() + "concerningHobbits.ogg")) {
-        return EXIT_FAILURE;
-    }
-
-    
-    music.play();
+    window.init("icon.png","concerningHobbits.ogg");
 
 
     // Start the game loop
     while (window.isOpen())
     {
-        if (music.getStatus() == sf::SoundSource::Stopped)
+        if (window.music.getStatus() == sf::SoundSource::Stopped)
         {
-            music.play();
+            window.music.play();
         }
         // Process events
         sf::Event event;
@@ -109,6 +92,10 @@ int main(int, char const**)
                 Tile * tile = getTileFromCursorPos(window);
                 
                 
+            }
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::S)
+            {
+                window.music.stop();
             }
         }
         drawMap(window);

@@ -323,6 +323,21 @@ Window::Window(int width, int height, const char * title) : sf::RenderWindow(sf:
 
 void Window::init(const char * iconFile, char const * musicFile)
 {
+    if (!icon.loadFromFile(resourcePath() + iconFile)) {
+        return EXIT_FAILURE;
+    }
+    //Set the windows icon to the loaded Icon image
+    setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    
+    //open and play the music
+    if (!music.openFromFile(resourcePath() + musicFile)) {
+        return EXIT_FAILURE;
+    }
+    music.play();
+    
+    //cap the frame rate limit
+    setFramerateLimit(60);
+    
     
 }
 
