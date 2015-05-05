@@ -16,7 +16,17 @@
 
 struct Selection
 {
-    Piece * piece;
+    
+    Tile * tile;
+    sf::Sprite sprite;
+    
+    //constructor
+    Selection();
+    
+    //draw the selection onto the window
+    void draw(sf::RenderWindow &);
+    
+    void command(sf::Keyboard::Key);
     
 };
 

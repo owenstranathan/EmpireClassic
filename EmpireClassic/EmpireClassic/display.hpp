@@ -25,6 +25,7 @@ extern sf::Texture water;
 extern sf::Texture land;
 extern sf::Texture transport;
 extern sf::Texture army;
+extern sf::Texture selection;
 
 //constant fog sprite to draw fog of war
 extern sf::Sprite fog;

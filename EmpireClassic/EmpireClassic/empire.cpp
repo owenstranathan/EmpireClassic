@@ -57,8 +57,9 @@ Type getType(Piece * piece)
 //TRANSPORT/////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
-Transport::Transport(int arg_x, int arg_y) : Piece(arg_x, arg_y)
-{ }
+Transport::Transport(int arg_x, int arg_y) : Piece(arg_x, arg_y), hp(5)
+{
+}
 
 
 void Transport::move(Direction dir)
@@ -177,6 +178,7 @@ void Transport::move(Direction dir)
             }
             break;
     }//end switch
+    updateVision(x, y);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -309,6 +311,8 @@ void Army::move(Direction dir)
             }
             break;
     }//end switch
+    
+    updateVision(x, y);
 
 }
 

@@ -130,7 +130,7 @@ struct Piece
     //for type related actions
     virtual void accept(Visitor & v) = 0;
     
-    virtual void move() {}
+    virtual void move(Direction dir) {}
 };
 
 

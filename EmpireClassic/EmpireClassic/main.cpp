@@ -41,6 +41,7 @@ sf::Texture water;
 sf::Texture land;
 sf::Texture transport;
 sf::Texture army;
+sf::Texture selection;
 
 //Fog of War sprite
 sf::Sprite fog;
@@ -60,14 +61,10 @@ int main(int, char const**)
     
     window.init("icon.png","concerningHobbits.ogg");
 
-
+    Selection select;
     // Start the game loop
     while (window.isOpen())
     {
-        if (window.music.getStatus() == sf::SoundSource::Stopped)
-        {
-            window.music.play();
-        }
         // Process events
         sf::Event event;
         while (window.pollEvent(event))
@@ -89,17 +86,30 @@ int main(int, char const**)
             // Handle mouse click events
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
             {
-                Tile * tile = getTileFromCursorPos(window);
-                
-                
+                select.tile = getTileFromCursorPos(window);
             }
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::S)
+            if(event.type == sf::Event::KeyPressed)
             {
-                window.music.stop();
+                switch(event.key.code)
+                {
+                    case sf::Keyboard::P:
+                        window.music.pause();
+                        break;
+                        
+                    case sf::Keyboard::O:
+                        window.music.play();
+
+                    default:
+                        break;
+                        
+                }
+                select.command(event.key.code);
+                
             }
+            
         }
         drawMap(window);
-
+        select.draw(window);
 
 
         // Draw the string
