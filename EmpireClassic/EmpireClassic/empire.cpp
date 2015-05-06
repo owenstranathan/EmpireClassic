@@ -44,6 +44,10 @@ void Tile::draw(sf::RenderTexture & world)
 void Piece::draw(sf::RenderTexture & world)
 {
     sprite.setPosition(x*32, y*32);
+    if(getType(this) == CITY  && owner == PLAYER)
+    {
+        sprite.setColor(sf::Color(0,255,0));
+    }
     world.draw(sprite);
 }
 
@@ -73,7 +77,7 @@ Type getType(Piece * piece)
 //TRANSPORT/////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
-Transport::Transport(int arg_x, int arg_y) : Piece(arg_x, arg_y), hp(5)
+Transport::Transport(int arg_x, int arg_y, Owner arg_owner) : Piece(arg_x, arg_y, arg_owner), hp(5)
 {
 }
 
@@ -200,7 +204,7 @@ void Transport::move(Direction dir)
 ////////////////////////////////////////////////////////////////////////////////////////
 //CITY//////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
-City::City(int arg_x, int arg_y, int arg_id) : Piece(arg_x, arg_y), id(arg_id)
+City::City(int arg_x, int arg_y, int arg_id, Owner arg_owner) : Piece(arg_x, arg_y, arg_owner), id(arg_id)
 { }
 
 void City::move(Direction dir) { }
@@ -208,7 +212,7 @@ void City::move(Direction dir) { }
 ////////////////////////////////////////////////////////////////////////////////////////
 //ARMY//////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
-Army::Army(int arg_x, int arg_y) : Piece(arg_x, arg_y)
+Army::Army(int arg_x, int arg_y, Owner arg_owner) : Piece(arg_x, arg_y, arg_owner)
 { }
 
 void Army::move(Direction dir)

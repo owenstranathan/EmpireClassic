@@ -9,7 +9,6 @@
 const int MAP_W = 50;
 const int MAP_H = 40;
 
-
 //The real map that hold all the in game objects
 extern Tile real_map[MAP_W][MAP_H];
 //the players view map that simply dictates what is and is not visible by the player.

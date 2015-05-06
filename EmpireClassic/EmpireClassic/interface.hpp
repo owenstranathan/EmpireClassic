@@ -10,6 +10,7 @@
 #define INTERFACE_HPP
 
 #include "empire.hpp"
+#include "display.hpp"
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>

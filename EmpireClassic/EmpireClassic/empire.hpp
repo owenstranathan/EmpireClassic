@@ -15,11 +15,6 @@
 #include "ResourcePath.hpp"
 
 
-
-
-//Number of turns that have elapsed
-extern int turn;
-
 //Struct 
 struct Tile;
 struct Visitor;
@@ -140,7 +135,7 @@ struct Piece
     
     //inheader definition of the Piece constructor only needed
     //to initialize the position variables
-    Piece(int arg_x, int arg_y): x(arg_x), y(arg_y) {}
+    Piece(int arg_x, int arg_y, Owner arg_owner): x(arg_x), y(arg_y), owner(arg_owner)  {}
     
     //draws the piece at its location
     void draw(sf::RenderTexture &);
@@ -164,7 +159,7 @@ struct Transport : Piece
     int moves;
     
     //constructor that takes a position
-    Transport(int, int);
+    Transport(int, int, Owner);
     
     //for type specific actions
     void accept(Visitor & v) { v.visit(this); }
@@ -184,6 +179,9 @@ extern int cityCount;
 
 struct City : Piece
 {
+    
+    //stuff inside the city
+    std::vector<Piece *> contents;
     //rate of production per turn
     int rate;
     //last turn Generated
@@ -195,7 +193,7 @@ struct City : Piece
     int id;
     
     //constructor that takes a position
-    City(int, int, int);
+    City(int, int, int, Owner);
     
     //for type specific actions
     void accept(Visitor & v) { v.visit(this); }
@@ -223,7 +221,7 @@ struct Army : Piece
     int hp;
     int moves;
     
-    Army(int, int);
+    Army(int, int, Owner);
     
     void accept(Visitor & v ){ v.visit(this);}
         

@@ -75,7 +75,9 @@ void Selection::command(sf::Keyboard::Key code)
 /////////////////////////////////////////////////////////////////////////////////////////
 
 
-Tile * getTileFromCursorPos(const Window & window) {
+Tile * getTileFromCursorPos(const Window & window)
+{
+    
     //center position of the viewport in pixels
     sf::Vector2f viewPos = window.view.getCenter();
     //size of the viewport in pixels
@@ -89,6 +91,11 @@ Tile * getTileFromCursorPos(const Window & window) {
     //get tile of mouse click by adding the offset to the mouse position in the view
     int i = (offset.x+mousePos.x) / 32;
     int j = (offset.y+mousePos.y) / 32;
-    return &real_map[i][j];
+    if(player_map[i][j])
+    {
+        return &real_map[i][j];
+    }
+    return NULL;
+    
 }
 
