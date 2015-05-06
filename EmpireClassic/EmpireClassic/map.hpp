@@ -6,8 +6,8 @@
 
 
 //global HEIGHT and WIDTH variables
-const int MAP_W = 30;
-const int MAP_H = 20;
+const int MAP_W = 50;
+const int MAP_H = 40;
 
 
 //The real map that hold all the in game objects

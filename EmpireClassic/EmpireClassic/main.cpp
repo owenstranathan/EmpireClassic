@@ -46,13 +46,14 @@ sf::Texture selection;
 //Fog of War sprite
 sf::Sprite fog;
 
+World world(MAP_W * 32, MAP_H * 32);
 
 int main(int, char const**)
 {
     //load the textures from files and exit
     if(!loadTextures()) { return EXIT_FAILURE; }
     clearVision();
-    readMap(resourcePath() + "map.txt");
+    readMap(resourcePath() + "map1.txt");
     loadMapTextures();
     fog.setTexture(fogTexture);
     
@@ -60,7 +61,11 @@ int main(int, char const**)
     Window window(SCREEN_WIDTH, SCREEN_HEIGHT, "EmpireClassic");
     
     window.init("icon.png","concerningHobbits.ogg");
-
+    
+    sf::Font font;
+    font.loadFromFile(resourcePath() + "sansation.ttf");
+    
+    sf::Text test("This is sample text", font, 30);
     Selection select;
     // Start the game loop
     while (window.isOpen())
@@ -98,22 +103,24 @@ int main(int, char const**)
                         
                     case sf::Keyboard::O:
                         window.music.play();
-
+                        
                     default:
                         break;
-                        
+                                           
                 }
+                window.scroll(event.key.code);
                 select.command(event.key.code);
                 
             }
             
         }
-        drawMap(window);
-        select.draw(window);
+        drawMap(world);
+        select.draw(world);
+        world.draw(window);
+        window.draw(test);
+        
 
 
-        // Draw the string
-        //window.draw(text);
 
         // Update the window
         window.display();

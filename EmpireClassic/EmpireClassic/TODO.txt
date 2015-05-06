@@ -13,13 +13,13 @@ Things to consider:
 
     implement fog of war /*
 
-    implement movement
+    implement movement /*
         actual moving of pieces aroound board matrux/*
-        event handling
+        event handling/*
 
-    implement cursor interaction
-        event handling
-        changing modes
+    implement cursor interaction/*
+        event handling/*
+        changing modes/*
 
     implement textual interface
 

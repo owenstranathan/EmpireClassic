@@ -11,12 +11,10 @@
 #include "empire.hpp"
 #include "map.hpp"
 
-Tile * getTileFromCursorPos(const sf::RenderWindow & window) {
-	sf::Vector2i vec = sf::Mouse::getPosition(window);
-	int i = vec.x / 32;
-	int j = vec.y / 32;
-	return &real_map[i][j];
-}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//SELECTION//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 
 
 Selection::Selection() : tile(NULL)
@@ -25,18 +23,18 @@ Selection::Selection() : tile(NULL)
 }
 
 
-void Selection::draw(sf::RenderWindow & window)
+void Selection::draw(sf::RenderTexture & world)
 {
     if(tile != NULL)
     {
         sprite.setPosition(tile->x * 32, tile->y *32);
-        window.draw(sprite);
+        world.draw(sprite);
     }
 }
 
 void Selection::command(sf::Keyboard::Key code)
 {
-    if(tile->piece)
+    if(tile && tile->piece)
     {
         Piece * piece = tile->piece;
         switch(code)
@@ -71,3 +69,26 @@ void Selection::command(sf::Keyboard::Key code)
         tile = &real_map[piece->x][piece->y];
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//MISC///////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+Tile * getTileFromCursorPos(const Window & window) {
+    //center position of the viewport in pixels
+    sf::Vector2f viewPos = window.view.getCenter();
+    //size of the viewport in pixels
+    sf::Vector2f viewSize = window.view.getSize();
+    //find the size of half the viewport
+    viewSize.x = viewSize.x/2;
+    viewSize.y = viewSize.y/2;
+    //use that to determine the offset from the absolute position on the world map to the view port
+    sf::Vector2f offset(viewPos.x - viewSize.x, viewPos.y - viewSize.y);
+    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    //get tile of mouse click by adding the offset to the mouse position in the view
+    int i = (offset.x+mousePos.x) / 32;
+    int j = (offset.y+mousePos.y) / 32;
+    return &real_map[i][j];
+}
+
