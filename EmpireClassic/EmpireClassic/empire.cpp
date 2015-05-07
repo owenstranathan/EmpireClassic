@@ -15,9 +15,9 @@
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////
-//WORLD////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+//WORLD////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 World::World(int width, int height)
 {
@@ -33,9 +33,9 @@ void World::draw(sf::RenderWindow & window)
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////
-//PIECE/////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+//PIECE////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void Piece::draw(sf::RenderTexture & world)
 {
     sprite.setPosition(x*32, y*32);
@@ -46,9 +46,9 @@ void Piece::draw(sf::RenderTexture & world)
     world.draw(sprite);
 }
 
-////////////////////////////////////////////////////////////////////////////////////////
-//VISITOR///////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+//VISITOR//////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 struct TypeVisitor : public Visitor
 {
@@ -57,7 +57,7 @@ struct TypeVisitor : public Visitor
     void visit(City * c){ type = CITY; }
     void visit(Army * a){ type = ARMY; }
     //add stuff for other types
-    
+
 };
 
 Type getType(Piece * piece)
@@ -68,11 +68,12 @@ Type getType(Piece * piece)
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////
-//TRANSPORT/////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+//TRANSPORT////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-Transport::Transport(int arg_x, int arg_y, Owner arg_owner) : Piece(arg_x, arg_y, arg_owner), hp(5)
+Transport::Transport(int arg_x, int arg_y, Owner arg_owner)
+: Piece(arg_x, arg_y, arg_owner), hp(5)
 {
     sprite.setTexture(transport);
     contents.push_back(new Army(arg_x, arg_y, PLAYER));
@@ -97,21 +98,21 @@ void Transport::move(Direction dir, Map & map)
                 }
             }
             break;
-            
+
         case EAST:
             if(canRecieve(x+1,y,map))
             {
                 if(map.map[x+1][y].terrain == WATER)
                 {
-                    
+
                     map.map[x+1][y].piece = map.map[x][y].piece;
                     map.map[x][y].piece = NULL;
                     x+=1;
                 }
-                
+
             }
             break;
-            
+
         case SOUTH:
             if(canRecieve(x,y+1,map))
             {
@@ -121,10 +122,10 @@ void Transport::move(Direction dir, Map & map)
                     map.map[x][y].piece = NULL;
                     y+=1;
                 }
-                
+
             }
             break;
-            
+
         case WEST:
             if(canRecieve(x-1,y,map))
             {
@@ -134,25 +135,25 @@ void Transport::move(Direction dir, Map & map)
                     map.map[x][y].piece = NULL;
                     x-=1;
                 }
-                
+
             }
             break;
-            
+
         case NORTHEAST:
             if(canRecieve(x+1,y-1,map))
             {
                 if(map.map[x+1][y-1].terrain == WATER)
                 {
-                    
+
                     map.map[x+1][y-1].piece = map.map[x][y].piece;
                     map.map[x][y].piece = NULL;
                     x+=1;
                     y-=1;
                 }
-                
+
             }
             break;
-            
+
         case NORTHWEST:
             if(canRecieve(x-1,y-1,map))
             {
@@ -165,8 +166,8 @@ void Transport::move(Direction dir, Map & map)
                 }
             }
             break;
-            
-            
+
+
         case SOUTHEAST:
             if(canRecieve(x+1,y+1,map))
             {
@@ -177,10 +178,10 @@ void Transport::move(Direction dir, Map & map)
                     x+=1;
                     y+=1;
                 }
-                
+
             }
             break;
-            
+
         case SOUTHWEST:
             if(canRecieve(x-1,y+1,map))
             {
@@ -191,7 +192,7 @@ void Transport::move(Direction dir, Map & map)
                     x-=1;
                     y+=1;
                 }
-                
+
             }
             break;
     }//end switch
@@ -202,9 +203,11 @@ void Transport::move(Direction dir, Map & map)
 void Transport::unload(Map & map)
 {
     //UNLOAD NORTH
-    if(canRecieve(x,y-1,map) && map.map[x][y-1].terrain == LAND && !contents.empty())
+    if(canRecieve(x,y-1,map)
+        && map.map[x][y-1].terrain == LAND
+        && !contents.empty())
     {
-        
+
         map.map[x][y-1].piece = contents.front();
         contents.erase(contents.begin(), contents.begin()+1);
         map.map[x][y-1].piece->x = x;
@@ -212,33 +215,39 @@ void Transport::unload(Map & map)
 
     }
     //UNLOAD EAST
-    else if(canRecieve(x+1,y,map) && map.map[x+1][y].terrain == LAND && !contents.empty())
+    else if(canRecieve(x+1,y,map)
+        && map.map[x+1][y].terrain == LAND
+        && !contents.empty())
     {
-        
+
         map.map[x+1][y].piece = contents.front();
         contents.erase(contents.begin(), contents.begin()+1);
         map.map[x+1][y].piece->x = x+1;
         map.map[x+1][y].piece->y = y;
-        
+
     }
     //UNLOAD SOUTH
-    else if(canRecieve(x,y+1,map) && map.map[x][y+1].terrain == LAND && !contents.empty())
+    else if(canRecieve(x,y+1,map)
+        && map.map[x][y+1].terrain == LAND
+        && !contents.empty())
     {
-        
+
         map.map[x][y+1].piece = contents.front();
         contents.erase(contents.begin(), contents.begin()+1);
         map.map[x][y+1].piece->x = x;
         map.map[x][y+1].piece->y = y+1;
     }
     //UNLOAD WEST
-    else if(canRecieve(x-1,y,map) && map.map[x-1][y].terrain == LAND && !contents.empty())
+    else if(canRecieve(x-1,y,map)
+        && map.map[x-1][y].terrain == LAND
+        && !contents.empty())
     {
-        
+
         map.map[x-1][y].piece = contents.front();
         contents.erase(contents.begin(), contents.begin()+1);
         map.map[x-1][y].piece->x = x-1;
         map.map[x-1][y].piece->y = y;
-        
+
     }
 
 
@@ -274,20 +283,24 @@ void Transport::load(Map & map)
 
 }
 
-////////////////////////////////////////////////////////////////////////////////////////
-//CITY//////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-City::City(int arg_x, int arg_y, int arg_id, Owner arg_owner) : Piece(arg_x, arg_y, arg_owner), id(arg_id)
+///////////////////////////////////////////////////////////////////////////////
+//CITY/////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+City::City(int arg_x, int arg_y, int arg_id, Owner arg_owner)
+: Piece(arg_x, arg_y, arg_owner), id(arg_id)
 {
     sprite.setTexture(city);
 }
 
 void City::move(Direction dir, Map  & map) { }
 
-////////////////////////////////////////////////////////////////////////////////////////
-//ARMY//////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-Army::Army(int arg_x, int arg_y, Owner arg_owner) : Piece(arg_x, arg_y, arg_owner)
+///////////////////////////////////////////////////////////////////////////////
+//ARMY/////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+Army::Army(int arg_x, int arg_y, Owner arg_owner)
+: Piece(arg_x, arg_y, arg_owner)
 {
     sprite.setTexture(army);
 }
@@ -310,21 +323,21 @@ void Army::move(Direction dir, Map &map)
                 }
             }
             break;
-            
+
         case EAST:
             if(canRecieve(x+1,y, map))
             {
                 if(map.map[x+1][y].terrain == LAND)
                 {
-                    
+
                     map.map[x+1][y].piece = map.map[x][y].piece;
                     map.map[x][y].piece = NULL;
                     x+=1;
                 }
-                
+
             }
             break;
-            
+
         case SOUTH:
             if(canRecieve(x,y+1, map))
             {
@@ -334,10 +347,10 @@ void Army::move(Direction dir, Map &map)
                     map.map[x][y].piece = NULL;
                     y+=1;
                 }
-                
+
             }
             break;
-            
+
         case WEST:
             if(canRecieve(x-1,y, map))
             {
@@ -347,25 +360,25 @@ void Army::move(Direction dir, Map &map)
                     map.map[x][y].piece = NULL;
                     x-=1;
                 }
-                
+
             }
             break;
-            
+
         case NORTHEAST:
             if(canRecieve(x+1,y-1,map))
             {
                 if(map.map[x+1][y-1].terrain == LAND)
                 {
-                    
+
                     map.map[x+1][y-1].piece = map.map[x][y].piece;
                     map.map[x][y].piece = NULL;
                     x+=1;
                     y-=1;
                 }
-                
+
             }
             break;
-            
+
         case NORTHWEST:
             if(canRecieve(x-1,y-1,map))
             {
@@ -378,8 +391,8 @@ void Army::move(Direction dir, Map &map)
                 }
             }
             break;
-            
-            
+
+
         case SOUTHEAST:
             if(canRecieve(x+1,y+1,map))
             {
@@ -390,10 +403,10 @@ void Army::move(Direction dir, Map &map)
                     x+=1;
                     y+=1;
                 }
-                
+
             }
             break;
-            
+
         case SOUTHWEST:
             if(canRecieve(x-1,y+1,map))
             {
@@ -404,11 +417,11 @@ void Army::move(Direction dir, Map &map)
                     x-=1;
                     y+=1;
                 }
-                
+
             }
             break;
     }//end switch
-    
+
     map.updateVision(x, y);
 
 }
@@ -416,31 +429,31 @@ void Army::move(Direction dir, Map &map)
 void Army::capture(Map & map)
 {
     //CAPTURE NORTH
-    if(map.map[x][y-1].piece && getType(map.map[x][y-1].piece) != ARMY && map.map[x][y-1].piece->owner != PLAYER)
+    if(map.map[x][y-1].piece
+        && getType(map.map[x][y-1].piece) != ARMY
+        && map.map[x][y-1].piece->owner != PLAYER)
     {
         map.map[x][y-1].piece->owner = PLAYER;
     }
     //CAPTURE EAST
-    else if(map.map[x+1][y].piece && getType(map.map[x+1][y].piece) != ARMY && map.map[x+1][y].piece->owner != PLAYER)
+    else if(map.map[x+1][y].piece
+        && getType(map.map[x+1][y].piece) != ARMY
+        && map.map[x+1][y].piece->owner != PLAYER)
     {
         map.map[x+1][y].piece->owner = PLAYER;
     }
     //CAPTURE SOUTH
-    else if(map.map[x][y+1].piece && getType(map.map[x][y+1].piece) != ARMY && map.map[x][y+1].piece->owner != PLAYER)
+    else if(map.map[x][y+1].piece
+        && getType(map.map[x][y+1].piece) != ARMY
+        && map.map[x][y+1].piece->owner != PLAYER)
     {
         map.map[x][y+1].piece->owner = PLAYER;
     }
     //CAPTURE WEST
-    else if(map.map[x-1][y].piece && getType(map.map[x-1][y].piece) != ARMY && map.map[x-1][y].piece->owner != PLAYER)
+    else if(map.map[x-1][y].piece
+        && getType(map.map[x-1][y].piece) != ARMY
+        && map.map[x-1][y].piece->owner != PLAYER)
     {
         map.map[x-1][y].piece->owner = PLAYER;
     }
 }
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-//MISC//////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-
-
-

@@ -30,59 +30,37 @@ bool loadTextures()
             && selection.loadFromFile(resourcePath() + "selection.png"));
 }
 
-/*
-//load the textures of the map
-void loadMapTextures()
-{
-    for(int i = 0; i < MAP_W; i++)
-    {
-        for(int j = 0; j < MAP_H; j++)
-        {
-            //real_map[i][j].sprite.setPosition(i*32, j*32);
-            if(real_map[i][j].terrain == LAND)
-            {
-                real_map[i][j].sprite.setTexture(land);
-                            }
-            else if(real_map[i][j].terrain == WATER)
-            {
-                real_map[i][j].sprite.setTexture(water);
-            }
-        }
-    }
-}
-*/
 
 
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-//WINDOW////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+//WINDOW///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 Window::Window(int width, int height, const char * title)
 :
-sf::RenderWindow(sf::VideoMode(960, 640), title), view(sf::FloatRect(0,0, 960, 640))
+sf::RenderWindow(sf::VideoMode(960, 640), title),
+view(sf::FloatRect(0,0, 960, 640))
 {
 }
 
 void Window::init(const char * iconFile, char const * musicFile)
 {
-    
+
 
     icon.loadFromFile(resourcePath() + iconFile);
     //Set the windows icon to the loaded Icon image
     setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-    
+
     //open and play the music
     music.openFromFile(resourcePath() + musicFile);
     music.play();
-    
+
     //cap the frame rate limit
     setFramerateLimit(60);
-    
+
     //Set the view port
     view.setCenter((MAP_W/2)*32, (MAP_H/2)*32);
-    
+
     setView(view);
 }
 
@@ -93,14 +71,15 @@ void Window::scroll(sf::Keyboard::Key code)
     sf::Vector2f viewPos = view.getCenter();
     //get the size of the viewport
     sf::Vector2f viewSize = view.getSize();
-    
+
     switch(code)
     {
         //Move the view around
         case sf::Keyboard::Up:  //Move up
             //consider x's at the top of the screen,
             //we want to keep from pushing any part of the view off the world
-            //subtract half the screen to the x and y positions in the center of the screen
+            //subtract half the screen to the x and y positions in the
+            //center of the screen
             //we subtract because screen coords start with 0-y at the top
             viewPos.y -= viewSize.y/2;
             if(isOnMap((viewPos.x)/32, (viewPos.y-32)/32))
@@ -138,5 +117,3 @@ void Window::scroll(sf::Keyboard::Key code)
 
     }
 }
-
-

@@ -6,9 +6,9 @@
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////
-//TILE//////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+//TILE/////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void Tile::draw(sf::RenderTexture & world)
 {
     sprite.setPosition(x*32, y*32);
@@ -26,14 +26,14 @@ bool canRecieve(int x, int y, Map & map)
         }
     }
     return false;
-    
+
 }
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////
-//MAP///////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+//MAP//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 
 //Read the saved map and bring it into memory from file
@@ -42,7 +42,7 @@ Map::Map(std::string file)
     clearVision();
     //Set the city count to zero at the start of the game
     cityCount = 0;
-    
+
     //Read the game dat in from a file
     std::ifstream infile (file.c_str());
     std::string line;
@@ -51,10 +51,10 @@ Map::Map(std::string file)
     {
         while(std::getline(infile,line))
         {
-            
+
             for(int column = 0; column < MAP_W; column++)
             {
-                
+
                 std::cout << line[column];
                 int type = line[column]-'0';
                 if(type)
@@ -107,7 +107,7 @@ Map::Map(std::string file)
     {
         std::cout << "File failed to open" << std::endl;
     }
-    
+
 }
 
 
@@ -180,114 +180,3 @@ bool isOnMap(int x, int y)
     }
     return true;
 }
-/*
-
-////////////////////////////////////////////////////////////////////////////////////////
-//MISC//////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-//Read the saved map and bring it into memory from file
-void readMap(std::string file)
-{
-    //Set the city count to zero at the start of the game
-    cityCount = 0;
-    
-    //Read the game dat in from a file
-    std::ifstream infile (file.c_str());
-    std::string line;
-    int row = 0;
-    if(infile.is_open())
-    {
-        while(std::getline(infile,line))
-        {
-
-            for(int column = 0; column < MAP_W; column++)
-            {
-
-                std::cout << line[column];
-                int type = line[column]-'0';
-                if(type)
-                {
-                    //set the terrain type
-                    real_map[column][row].terrain = LAND;
-                    real_map[column][row].sprite.setTexture(land);
-                    switch(type)
-                    {
-                        case 2:
-                            //push city onto tile vector
-                            real_map[column][row].piece = new City(column, row, cityCount, NEUTRAL);
-                            //increase the cityCount
-                            ++cityCount;
-                            break;
-                        case 3:
-                            real_map[column][row].terrain = WATER;
-                            real_map[column][row].sprite.setTexture(water);
-                            real_map[column][row].piece = new Transport(column, row, NEUTRAL);
-                            break;
-                        case 4:
-                            real_map[column][row].piece = new Army(column, row, NEUTRAL);
-                            //push army onto tile vector
-                            break;
-                        case 8:
-                            real_map[column][row].piece = new Army(column, row, PLAYER);
-                            updateVision(column, row);
-                            break;
-                        case 9:
-                            real_map[column][row].piece = new City(column, row, cityCount, PLAYER);
-                            updateVision(column, row);
-                            break;
-                    }
-                }
-                else
-                {
-                    //set the terrain type
-                    real_map[column][row].terrain = WATER;
-                    real_map[column][row].sprite.setTexture(water);
-                }
-                //set the position of the tile
-                real_map[column][row].x = column;
-                real_map[column][row].y = row;
-            }
-            std::cout << std::endl;
-            row++;
-        }
-    }
-    else
-    {
-        std::cout << "File failed to open" << std::endl;
-    }
-    
-}
-
-
-
-
-
-void updateVision(int x, int y, int v )
-{
-    //for the total length of vision
-    for( ; v >= 0; v--)
-    {
-        if(isOnMap(x, y-v)){ player_map[x][y-v] = true; } // v blocks NORTH
-        if(isOnMap(x+v,y-v)){ player_map[x+v][y-v] = true; } // v blocks NORTHEAST
-        if(isOnMap(x+v,y)){ player_map[x+v][y] = true; } // v blocks BLOCKS EAST
-        if(isOnMap(x+v,y+v)){ player_map[x+v][y+v] = true; } // v blocks SOUTHEAST
-        if(isOnMap(x,y+v)){ player_map[x][y+v] = true; } // v blocks SOUTH
-        if(isOnMap(x-v,y+v)){ player_map[x-v][y+v] = true; } // v blocks SOUTHWEST
-        if(isOnMap(x-v,y)){ player_map[x-v][y] = true; } // v blocks WEST
-        if(isOnMap(x-v,y-v)){ player_map[x-v][y-v] = true; }// v blocks NORTHWEST
-    }
-}
-
-
-
-
-void clearVision()
-{
-    for(int i = 0; i < MAP_W; i++)
-    {
-        for(int j = 0 ; j<MAP_H; j++)
-        {
-            player_map[i][j] = false;
-        }
-    }
-}*/
