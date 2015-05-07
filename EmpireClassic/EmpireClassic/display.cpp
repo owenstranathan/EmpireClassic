@@ -7,7 +7,6 @@
 //
 
 #include "display.hpp"
-#include "map.hpp"
 #include "ResourcePath.hpp"
 #include <iomanip>
 
@@ -31,6 +30,7 @@ bool loadTextures()
             && selection.loadFromFile(resourcePath() + "selection.png"));
 }
 
+/*
 //load the textures of the map
 void loadMapTextures()
 {
@@ -42,83 +42,17 @@ void loadMapTextures()
             if(real_map[i][j].terrain == LAND)
             {
                 real_map[i][j].sprite.setTexture(land);
-                //real_map[i][j]->sprite.setColor(sf::Color((i+1)*9,(j+1)*9,0));
-                
-                //If the pieceList is not empty
-                if(real_map[i][j].piece != NULL)
-                {
-                 
-                    //Set the textures based on the type of the city
-                    switch(getType(real_map[i][j].piece))
-                    {
-                        case CITY:
-                            real_map[i][j].piece->sprite.setTexture(city);
-                            //piece->sprite.setPosition(real_map[i][j].x*32,real_map[i][j].y*32);
-                            break;
-                        
-                        case ARMY:
-                            real_map[i][j].piece->sprite.setTexture(army);
-                            break;
-                        default:
-                            break;
-                        //Stuff for other types
-                    }
-
-                }
-            }
+                            }
             else if(real_map[i][j].terrain == WATER)
             {
                 real_map[i][j].sprite.setTexture(water);
-                //real_map[i][j]->sprite.setColor(sf::Color((i+1)*9,(j+1)*9,0));
-                if(real_map[i][j].piece != NULL)
-                {
-
-                    //Set the textures based on the type of the city
-                    switch(getType(real_map[i][j].piece))
-                    {
-                        case TRANSPORT:
-                            real_map[i][j].piece->sprite.setTexture(transport);
-                            //piece->sprite.setPosition(real_map[i][j].x*32,real_map[i][j].y*32);
-                            break;
-                        case ARMY:
-                            real_map[i][j].piece->sprite.setTexture(army);
-                            break;
-                        default:
-                            break;
-                        
-                    }
-                }
             }
         }
     }
 }
+*/
 
 
-//DRAWS THE REAL MAP AND THE FOG OF WAR WHERE APPROPRIATE
-void drawMap(sf::RenderTexture & world)
-{
-    for(int i = 0; i < MAP_W; i++ )
-    {
-        for(int j = 0; j < MAP_H; j ++ )
-        {
-            // Draw the sprite
-            real_map[i][j].draw(world);
-            //if the tile's piece list is not emty
-            if(real_map[i][j].piece != NULL)
-            {
-                //draw the last piece in the list
-                real_map[i][j].piece->draw(world);
-            }
-            //Draw the players vision
-            if(!player_map[i][j])
-            {
-                //cover anything the player can't see with fog
-                fog.setPosition(i*32,j*32);
-                world.draw(fog);
-            }
-        }
-    }
-}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////

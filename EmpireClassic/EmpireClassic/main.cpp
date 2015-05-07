@@ -17,9 +17,9 @@
 #include "ResourcePath.hpp"
 
 //The actual map
-Tile real_map[MAP_W][MAP_H];
+//Tile real_map[MAP_W][MAP_H];
 //The players view map
-bool player_map[MAP_W][MAP_H];
+//bool player_map[MAP_W][MAP_H];
 
 int turn = 0;
 
@@ -41,13 +41,14 @@ int main(int, char const**)
 {
     //load the textures from files and exit
     if(!loadTextures()) { return EXIT_FAILURE; }
-    clearVision();
-    readMap(resourcePath() + "map1.txt");
-    loadMapTextures();
+    Map map(resourcePath() + "map1.txt");
+    //clearVision();
+    //readMap(resourcePath() + "map1.txt");
+    //loadMapTextures();
     fog.setTexture(fogTexture);
     
     // Create the main window
-    Window window(SCREEN_WIDTH, SCREEN_HEIGHT, "EmpireClassic");
+    Window window(MAP_W*32, MAP_H*32, "EmpireClassic");
     
     window.init("icon.png","concerningHobbits.ogg");
     
@@ -80,7 +81,7 @@ int main(int, char const**)
             // Handle mouse click events
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
             {
-                select.tile = getTileFromCursorPos(window);
+                select.tile = getTileFromCursorPos(window, map);
             }
             if(event.type == sf::Event::KeyPressed)
             {
@@ -98,12 +99,16 @@ int main(int, char const**)
                                            
                 }
                 window.scroll(event.key.code);
-                select.command(event.key.code);
+                select.command(event.key.code, map);
                 
             }
             
         }
-        drawMap(world);
+       /* sf::Vector2f viewPos = window.view.getCenter();
+        sf::Vector2f viewSize = window.view.getSize();
+        int 
+        text.setPosition(<#float x#>, <#float y#>)*/
+        map.draw(world);
         select.draw(world);
         world.draw(window);
         window.draw(test);

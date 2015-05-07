@@ -16,12 +16,14 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include "empire.hpp"
+#include "interface.hpp"
 #include "map.hpp"
 
 
 //SCREEN SIZE VALUES
-const int SCREEN_WIDTH = MAP_W * 32;
-const int SCREEN_HEIGHT = MAP_H * 32;
+//const int SCREEN_WIDTH = MAP_W * 32;
+//const int SCREEN_HEIGHT = MAP_H * 32;
 
 //external textures
 extern sf::Texture fogTexture;

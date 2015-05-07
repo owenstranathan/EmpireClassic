@@ -14,6 +14,10 @@
 #include <SFML/Graphics.hpp>
 #include "ResourcePath.hpp"
 
+#include "interface.hpp"
+#include "map.hpp"
+#include "display.hpp"
+
 
 //Struct 
 struct Tile;
@@ -22,6 +26,8 @@ struct Piece;
 struct Transport;
 struct City;
 struct Army;
+
+
 
 //vactir to hold all the pieces the player owns
 extern std::vector<Piece *> player_pieces;
@@ -77,39 +83,6 @@ struct World : sf::RenderTexture
 };
 
 
-////////////////////////////////////////////////////////////////////////////////////////
-//TILE//////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-enum Terrain
-{
-    WATER,
-    LAND
-};
-
-struct Tile
-{
-    //Sprite of the tile
-    sf::Sprite sprite;
-    
-    //The type of terrain the tile is
-    Terrain terrain;
-    
-    //The piece located on the terrain
-    Piece * piece;
-    
-    //position of the tile
-    int x, y;
-    
-    Tile() : piece(NULL)
-    {}
-    
-    //draws the piece at it's location
-    void draw(sf::RenderTexture &);
-};
-
-//determines whether a tile has a piece or not
-bool canRecieve(int, int);
-
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //PIECE/////////////////////////////////////////////////////////////////////////////////
@@ -143,7 +116,7 @@ struct Piece
     //for type related actions
     virtual void accept(Visitor & v) = 0;
     
-    virtual void move(Direction dir) {}
+    virtual void move(Direction dir, Map & map) {}
 };
 
 
@@ -165,7 +138,13 @@ struct Transport : Piece
     void accept(Visitor & v) { v.visit(this); }
     
     //moving functionality
-    void move(Direction dir);
+    void move(Direction dir, Map & map);
+    
+    //for unloading armies
+    void unload(Map & map);
+    
+    //for loading armies
+    void load(Map & map);
     
 };
 
@@ -205,7 +184,7 @@ struct City : Piece
     void submitTo(Owner & newOwner);
 
     //moving functionality
-    void move(Direction dir);
+    void move(Direction dir, Map & map);
 
     
 };
@@ -225,9 +204,11 @@ struct Army : Piece
     
     void accept(Visitor & v ){ v.visit(this);}
         
-    //movement functionally
+    //movement functionality
+    void move(Direction dir, Map& map);
     
-    void move(Direction dir);
+    //capture cities and docked transports
+    void capture(Map & map);
     
 };
 
