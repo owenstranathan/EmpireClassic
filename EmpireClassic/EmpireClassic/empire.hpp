@@ -70,18 +70,6 @@ enum Type
 //Returns an enum of the type of piece
 Type getType(Piece * piece);
 
-///////////////////////////////////////////////////////////////////////////////
-//WORLD////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-struct World : sf::RenderTexture
-{
-    sf::Sprite sprite;
-
-    World(int, int);
-
-    void draw(sf::RenderWindow &);
-};
-
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -129,8 +117,6 @@ struct Transport : Piece
     //linked list for contents
     std::vector<Piece *> contents;
     const int vision = 1;
-    int hp;
-    int moves;
 
     //constructor that takes a position
     Transport(int, int, Owner);
@@ -195,11 +181,6 @@ struct City : Piece
 ///////////////////////////////////////////////////////////////////////////////
 struct Army : Piece
 {
-    //for how far it can see
-    int vision;
-    int strength;
-    int hp;
-    int moves;
 
     Army(int, int, Owner);
 

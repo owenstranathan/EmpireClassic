@@ -15,22 +15,6 @@
 
 
 
-///////////////////////////////////////////////////////////////////////////////
-//WORLD////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-
-World::World(int width, int height)
-{
-    create(width, height);
-}
-
-
-void World::draw(sf::RenderWindow & window)
-{
-    display();
-    sprite.setTexture(getTexture());
-    window.draw(sprite);
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -73,7 +57,7 @@ Type getType(Piece * piece)
 ///////////////////////////////////////////////////////////////////////////////
 
 Transport::Transport(int arg_x, int arg_y, Owner arg_owner)
-: Piece(arg_x, arg_y, arg_owner), hp(5)
+: Piece(arg_x, arg_y, arg_owner)
 {
     sprite.setTexture(transport);
     contents.push_back(new Army(arg_x, arg_y, PLAYER));
@@ -431,29 +415,29 @@ void Army::capture(Map & map)
     //CAPTURE NORTH
     if(map.map[x][y-1].piece
         && getType(map.map[x][y-1].piece) != ARMY
-        && map.map[x][y-1].piece->owner != PLAYER)
+        && map.map[x][y-1].piece->owner != owner)
     {
-        map.map[x][y-1].piece->owner = PLAYER;
+        map.map[x][y-1].piece->owner = owner;
     }
     //CAPTURE EAST
     else if(map.map[x+1][y].piece
         && getType(map.map[x+1][y].piece) != ARMY
-        && map.map[x+1][y].piece->owner != PLAYER)
+        && map.map[x+1][y].piece->owner != owner)
     {
-        map.map[x+1][y].piece->owner = PLAYER;
+        map.map[x+1][y].piece->owner = owner;
     }
     //CAPTURE SOUTH
     else if(map.map[x][y+1].piece
         && getType(map.map[x][y+1].piece) != ARMY
-        && map.map[x][y+1].piece->owner != PLAYER)
+        && map.map[x][y+1].piece->owner != owner)
     {
-        map.map[x][y+1].piece->owner = PLAYER;
+        map.map[x][y+1].piece->owner = owner;
     }
     //CAPTURE WEST
     else if(map.map[x-1][y].piece
         && getType(map.map[x-1][y].piece) != ARMY
-        && map.map[x-1][y].piece->owner != PLAYER)
+        && map.map[x-1][y].piece->owner != owner)
     {
-        map.map[x-1][y].piece->owner = PLAYER;
+        map.map[x-1][y].piece->owner = owner;
     }
 }

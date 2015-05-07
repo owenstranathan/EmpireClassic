@@ -29,19 +29,19 @@ struct Tile
 {
     //Sprite of the tile
     sf::Sprite sprite;
-    
+
     //The type of terrain the tile is
     Terrain terrain;
-    
+
     //The piece located on the terrain
     Piece * piece;
-    
+
     //position of the tile
     int x, y;
-    
+
     Tile() : piece(NULL)
     {}
-    
+
     //draws the piece at it's location
     void draw(sf::RenderTexture &);
 };
@@ -61,17 +61,17 @@ struct Map
 {
     Tile map[MAP_W][MAP_H];
     bool vision[MAP_W][MAP_H];
-    
+
     int cityCount;
 
 
     //read predefined maps from text files and set the map member accordingly
     Map(std::string);
-    
+
     //function to update the player_map based on player location
     void updateVision(int , int, int v = 1);
 
-    
+
     //for clearing the vision of the map
     void clearVision();
 
@@ -81,26 +81,5 @@ struct Map
 //function to check if a location is part of the map
 bool isOnMap(int, int);
 
-////////
-//POOP//
-////////
-
-/*
-//The real map that hold all the in game objects
-extern Tile real_map[MAP_W][MAP_H];
-//the players view map that simply dictates what is and is not visible by the player.
-extern bool player_map[MAP_W][MAP_H];
-
-//function to read predefined maps from text files
-void readMap(std::string);
-
-//function to update the player_map based on player location
-void updateVision(int , int, int v = 1);
-
-
-//for clearing the vision of the map
-void clearVision();*/
 
 #endif /* defined(MAP_HPP) */
-
-
